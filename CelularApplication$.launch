@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="scala.application">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/celulares-ui-arena-scala/src/main/scala/ar/edu/celulares/runnable/CelularApplication.scala"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<mapAttribute key="org.eclipse.debug.core.preferred_launchers">
+<mapEntry key="[debug]" value="scala.application.new"/>
+</mapAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="ar.edu.celulares.runnable.CelularApplication"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="celulares-ui-arena-scala"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.system.class.loader=com.uqbar.apo.APOClassLoader"/>
+</launchConfiguration>
