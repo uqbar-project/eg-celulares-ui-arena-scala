@@ -15,6 +15,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import ar.edu.celulares.applicationModel.BuscadorCelular
 import ar.edu.celulares.domain.Celular
+import org.uqbar.arena.widgets.NumericField
 
 /**
  * Ventana de búsqueda de celulares.
@@ -49,20 +50,24 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
    * El panel principal de búsuqeda permite filtrar por número o nombre
    */
   override def createFormPanel(mainPanel: Panel) = {
-    var searchFormPanel = new Panel(mainPanel)
+    val searchFormPanel = new Panel(mainPanel)
     searchFormPanel.setLayout(new ColumnLayout(2))
 
-    var labelNumero = new Label(searchFormPanel)
+    val labelNumero = new Label(searchFormPanel)
     labelNumero.setText("Número")
     labelNumero.setForeground(Color.BLUE)
 
-    new TextBox(searchFormPanel).bindValueToProperty("numero")
+    val numero = new NumericField(searchFormPanel)
+    numero.bindValueToProperty("numero")
+    numero.setWidth(150)
 
-    var labelNombre = new Label(searchFormPanel)
+    val labelNombre = new Label(searchFormPanel)
     labelNombre.setText("Nombre del cliente")
     labelNombre.setForeground(Color.BLUE)
 
-    new TextBox(searchFormPanel).bindValueToProperty("nombre")
+    val nombre = new TextBox(searchFormPanel)
+    nombre.bindValueToProperty("nombre")
+    nombre.setWidth(200)
   }
 
   /**
@@ -99,11 +104,11 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
    * dispara la notificación a la grilla que funciona como Observer
    */
   def createResultsGrid(mainPanel: Panel) {
-    var table = new Table[Celular](mainPanel, classOf[Celular])
-    table.setNumberVisibleRows(7)
-    table.bindItemsToProperty("resultados")
-    table.bindValueToProperty("celularSeleccionado")
-    this.describeResultsGrid(table)
+    val table = new Table[Celular](mainPanel, classOf[Celular])
+    table setNumberVisibleRows 7
+    table bindItemsToProperty "resultados"
+    table bindValueToProperty "celularSeleccionado"
+    describeResultsGrid(table)
   }
 
   /**
@@ -136,18 +141,18 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
   }
 
   def createGridActions(mainPanel: Panel) {
-    var actionsPanel = new Panel(mainPanel)
+    val actionsPanel = new Panel(mainPanel)
     actionsPanel.setLayout(new HorizontalLayout)
-    var edit = new Button(actionsPanel)
+    val edit = new Button(actionsPanel)
       .setCaption("Editar")
       .onClick({ () => this.modificarCelular() })
 
-    var remove = new Button(actionsPanel)
+    val remove = new Button(actionsPanel)
       .setCaption("Borrar")
       .onClick({ () => getModelObject.eliminarCelularSeleccionado() })
 
     // Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
-    var elementSelected = new NotNullObservable("celularSeleccionado")
+    val elementSelected = new NotNullObservable("celularSeleccionado")
     remove.bindEnabled(elementSelected)
     edit.bindEnabled(elementSelected)
   }

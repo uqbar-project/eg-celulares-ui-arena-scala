@@ -17,6 +17,7 @@ import org.uqbar.arena.windows.WindowOwner
 import ar.edu.celulares.domain.Celular
 import ar.edu.celulares.domain.Modelo
 import ar.edu.celulares.home.RepoModelos
+import org.uqbar.arena.widgets.NumericField
 
 class EditarCelularWindow(owner: WindowOwner, model: Celular) extends Dialog[Celular](owner, model) {
 
@@ -24,9 +25,16 @@ class EditarCelularWindow(owner: WindowOwner, model: Celular) extends Dialog[Cel
 		var form = new Panel(mainPanel)
 		form.setLayout(new ColumnLayout(2))
 		new Label(form).setText("Número")
-		new TextBox(form).bindValueToProperty("numero")
+		val numero = new NumericField(form)
+		numero.bindValueToProperty("numero")
+		numero.setWidth(150)
+		
 		new Label(form).setText("Nombre del cliente")
-		new TextBox(form).bindValueToProperty("nombre")
+		
+		val nombre = new TextBox(form)
+		nombre.bindValueToProperty("nombre")
+		nombre.setWidth(200)
+		
 		new Label(form).setText("Modelo del aparato")
 		var selectorModelo = new Selector[Modelo](form)
 		selectorModelo.allowNull(false)
