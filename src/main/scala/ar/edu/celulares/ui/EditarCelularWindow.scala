@@ -21,7 +21,7 @@ import org.uqbar.arena.scala.ArenaScalaImplicits.closureToAction
 class EditarCelularWindow(owner: WindowOwner, model: Celular) extends Dialog[Celular](owner, model) {
 
 	override def createFormPanel(mainPanel: Panel) = {
-		var form = new Panel(mainPanel)
+		val form = new Panel(mainPanel)
 		form.setLayout(new ColumnLayout(2))
 		new Label(form).setText("Número")
 		val numero = new NumericField(form)
@@ -35,10 +35,10 @@ class EditarCelularWindow(owner: WindowOwner, model: Celular) extends Dialog[Cel
 		nombre.setWidth(200)
 		
 		new Label(form).setText("Modelo del aparato")
-		var selectorModelo = new Selector[Modelo](form)
+		val selectorModelo = new Selector[Modelo](form)
 		selectorModelo.allowNull(false)
 		selectorModelo.bindValueToProperty("modeloCelular")
-		var propiedadModelos = selectorModelo.bindItems(new ObservableProperty(RepoModelos, "modelos"))
+		val propiedadModelos = selectorModelo.bindItems(new ObservableProperty(RepoModelos, "modelos"))
 		propiedadModelos.setAdapter(new PropertyAdapter(classOf[Modelo], "descripcionEntera"))
 		new Label(form).setText("Recibe resumen cuenta en domicilio")
 		new CheckBox(form).bindValueToProperty("recibeResumenCuenta")

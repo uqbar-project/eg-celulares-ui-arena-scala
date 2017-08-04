@@ -17,7 +17,7 @@ object RepoModelos extends CollectionBasedRepo[Modelo] {
 	this.create("MOTOROLA RAZR V3", 350f, false)
 
 	def create(descripcion: String, costo: Float, requiereResumenCuenta: Boolean) : Unit = {
-		var modelo = new Modelo()
+		val modelo = new Modelo()
 		modelo.descripcion = descripcion
 		modelo.costo = costo
 		modelo.requiereResumenCuenta = requiereResumenCuenta

@@ -8,7 +8,7 @@ import org.uqbar.commons.model.annotations.Dependencies
 @Observable
 class Celular extends Entity {
 
-  	final var MAX_NUMERO = 100000
+  final var MAX_NUMERO = 100000
 
 	var id : Integer = _
 	var numero : Integer = _
@@ -53,7 +53,7 @@ class Celular extends Entity {
 	// ** Misceláneos
 	// ********************************************************
 	override def toString() : String = {
-		var result = new StringBuffer()
+		val result = new StringBuffer()
 		if (nombre != null) {
 			result.append(nombre)  
 		} else {

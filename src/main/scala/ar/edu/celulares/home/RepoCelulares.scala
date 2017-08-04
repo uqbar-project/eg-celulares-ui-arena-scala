@@ -24,7 +24,7 @@ object RepoCelulares extends CollectionBasedRepo[Celular] {
   // ** Altas y bajas
   // ********************************************************
   def create(pNombre: String, pNumero: Integer, pModeloCelular: Modelo, pRecibeResumenCuenta: Boolean): Unit = {
-    var celular = new Celular
+    val celular = new Celular
     celular.nombre = pNombre
     celular.numero = pNumero
     celular.modeloCelular = pModeloCelular
