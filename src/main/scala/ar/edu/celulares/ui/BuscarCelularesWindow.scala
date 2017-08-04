@@ -16,6 +16,7 @@ import org.uqbar.arena.windows.WindowOwner
 import ar.edu.celulares.applicationModel.BuscadorCelular
 import ar.edu.celulares.domain.Celular
 import org.uqbar.arena.widgets.NumericField
+import ActionWrapper.lambdaToAction
 
 /**
  * Ventana de búsqueda de celulares.
@@ -174,3 +175,4 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
   }
 
 }
+

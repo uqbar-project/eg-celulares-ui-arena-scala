@@ -1,7 +1,5 @@
 package ar.edu.celulares.ui
 
-
-
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.ColumnLayout
@@ -18,6 +16,7 @@ import ar.edu.celulares.domain.Celular
 import ar.edu.celulares.domain.Modelo
 import ar.edu.celulares.home.RepoModelos
 import org.uqbar.arena.widgets.NumericField
+import ActionWrapper.lambdaToAction
 
 class EditarCelularWindow(owner: WindowOwner, model: Celular) extends Dialog[Celular](owner, model) {
 

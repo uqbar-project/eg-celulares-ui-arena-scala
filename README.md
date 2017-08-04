@@ -1,6 +1,8 @@
 # Celulares
 
-![celualres](https://cloud.githubusercontent.com/assets/4549002/17305339/5c1120c8-5800-11e6-9f8c-4d8a9dbd8e49.png)
+[![Build Status](https://travis-ci.org/uqbar-project/eg-celulares-ui-arena-scala.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-celulares-ui-arena-scala)
+
+![celulares](https://cloud.githubusercontent.com/assets/4549002/17305339/5c1120c8-5800-11e6-9f8c-4d8a9dbd8e49.png)
 
 Ejemplo de un A-B-M (Alta-Baja-Modificación) completo de una lista de clientes de una compañía de telefonía celular
 
