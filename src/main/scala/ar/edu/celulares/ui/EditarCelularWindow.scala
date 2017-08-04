@@ -16,7 +16,7 @@ import ar.edu.celulares.domain.Celular
 import ar.edu.celulares.domain.Modelo
 import ar.edu.celulares.home.RepoModelos
 import org.uqbar.arena.widgets.NumericField
-import org.uqbar.arena.scala.ArenaScalaImplicits
+import org.uqbar.arena.scala.ArenaScalaImplicits.closureToAction
 
 class EditarCelularWindow(owner: WindowOwner, model: Celular) extends Dialog[Celular](owner, model) {
 

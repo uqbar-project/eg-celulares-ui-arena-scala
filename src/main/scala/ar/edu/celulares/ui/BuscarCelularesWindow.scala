@@ -16,7 +16,8 @@ import org.uqbar.arena.windows.WindowOwner
 import ar.edu.celulares.applicationModel.BuscadorCelular
 import ar.edu.celulares.domain.Celular
 import org.uqbar.arena.widgets.NumericField
-import org.uqbar.arena.scala.ArenaScalaImplicits
+import org.uqbar.arena.scala.ArenaScalaImplicits.closureToAction
+import org.uqbar.arena.scala.ArenaScalaImplicits.closureToTransformer
 
 /**
  * Ventana de búsqueda de celulares.
