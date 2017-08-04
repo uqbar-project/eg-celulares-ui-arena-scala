@@ -1,9 +1,9 @@
 package ar.edu.celulares.domain
 
-import org.uqbar.commons.model.ObservableUtils
-import org.uqbar.commons.model.UserException
 import org.uqbar.commons.model.Entity
-import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.exceptions.UserException
+import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.annotations.Dependencies
 
 @Observable
 class Celular extends Entity {
@@ -15,29 +15,6 @@ class Celular extends Entity {
 	var nombre : String = _
 	var modeloCelular : Modelo = _
 	var recibeResumenCuenta : Boolean = false
-
-	// ********************************************************
-	// ** Getters y setters
-	// Los getters y setters por default no se deben codificar
-	// peeeeeero...
-	// en nuestro ejemplo tenemos que modificar la propiedad
-	// recibeResumenCuenta en base al modelo de celular seleccionado
-	// ********************************************************
-
-	def setModeloCelular(unModeloCelular: Modelo) = {
-		// para no entrar en loop infinito, en el setter debemos
-		// utilizar _ para indicar que nos referimos a la variable
-		// que genera xtend para compilar en Java
-		modeloCelular = unModeloCelular
-		// fin comentario
-		recibeResumenCuenta = unModeloCelular.requiereResumenCuenta
-	}
-
-	def setRecibeResumenCuenta(siRecibeResumenCuenta: Boolean) = {
-		// idem modeloCelular
-		recibeResumenCuenta = siRecibeResumenCuenta
-		// fin comentario _ sobre variable
-	}
 
 	// ********************************************************
 	// ** Validacion
@@ -67,6 +44,7 @@ class Celular extends Entity {
 	// ********************************************************
 	// ** Getters y setters
 	// ********************************************************
+	@Dependencies(Array("modeloCelular"))
 	def getHabilitaResumenCuenta() : Boolean = {
 		return !modeloCelular.requiereResumenCuenta
 	}

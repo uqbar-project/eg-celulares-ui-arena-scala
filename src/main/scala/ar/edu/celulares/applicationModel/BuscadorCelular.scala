@@ -2,9 +2,10 @@ package ar.edu.celulares.applicationModel
 
 import ar.edu.celulares.domain.Celular
 import java.util.ArrayList
-import ar.edu.celulares.home.HomeCelulares
-import ar.edu.celulares.home.HomeCelulares
+import ar.edu.celulares.home.RepoCelulares
+import ar.edu.celulares.home.RepoCelulares
 import collection.JavaConversions._
+import org.uqbar.commons.model.annotations.Observable
 
 /**
  * Application model que representa la búsqueda de {@link Celular}.
@@ -22,7 +23,7 @@ import collection.JavaConversions._
  *
  * @author npasserini
  */
-@org.uqbar.commons.utils.Observable
+@Observable
 class BuscadorCelular extends Serializable {
 
 	var numero : Integer = _
@@ -38,7 +39,7 @@ class BuscadorCelular extends Serializable {
 		resultados = new ArrayList[Celular]
 
 		// FIN WORKAROUND
-		resultados = HomeCelulares.search(numero, nombre)
+		resultados = RepoCelulares.search(numero, nombre)
 		// también se puede llamar homeCelulares.search(numero, nombre) 
 	}
 
@@ -48,7 +49,7 @@ class BuscadorCelular extends Serializable {
 	}
 
 	def eliminarCelularSeleccionado() = {
-		HomeCelulares.delete(celularSeleccionado)
+		RepoCelulares.delete(celularSeleccionado)
 		this.search()
 		celularSeleccionado = null
 	}

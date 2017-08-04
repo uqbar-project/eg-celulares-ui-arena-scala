@@ -1,7 +1,6 @@
 package ar.edu.celulares.ui
 
 import java.awt.Color
-import org.uqbar.arena.actions.MessageSend
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
@@ -14,10 +13,8 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import com.uqbar.commons.collections.Transformer
 import ar.edu.celulares.applicationModel.BuscadorCelular
 import ar.edu.celulares.domain.Celular
-import ar.edu.celulares.controller.SiNoTransformer
 
 /**
  * Ventana de búsqueda de celulares.
@@ -80,19 +77,17 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
   override def addActions(actionsPanel: Panel) {
     new Button(actionsPanel)
       .setCaption("Buscar")
-      .onClick(new MessageSend(getModelObject, "search"))
-      //			TODO: Convertir este bloque de código a un Action.execute()
-      //			.onClick { => getModelObject.search }
+      .onClick { () => getModelObject.search }
       .setAsDefault
       .disableOnError
 
     new Button(actionsPanel) //
       .setCaption("Limpiar")
-      .onClick(new MessageSend(getModelObject, "clear"))
+      .onClick({ () => getModelObject.clear })
 
     new Button(actionsPanel) //
       .setCaption("Nuevo Celular")
-      .onClick(new MessageSend(this, "crearCelular"))
+      .onClick({ () => this.crearCelular() })
   }
 
   // *************************************************************************
@@ -105,8 +100,7 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
    */
   def createResultsGrid(mainPanel: Panel) {
     var table = new Table[Celular](mainPanel, classOf[Celular])
-    table.setHeigth(200)
-    table.setWidth(450)
+    table.setNumberVisibleRows(7)
     table.bindItemsToProperty("resultados")
     table.bindValueToProperty("celularSeleccionado")
     this.describeResultsGrid(table)
@@ -122,7 +116,7 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
   def describeResultsGrid(table: Table[Celular]) {
     new Column[Celular](table) //
       .setTitle("Nombre")
-      .setFixedSize(150)
+      .setFixedSize(250)
       .bindContentsToProperty("nombre")
 
     new Column[Celular](table) //
@@ -138,7 +132,7 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
     new Column[Celular](table)
       .setTitle("Recibe resumen de cuenta")
       .setFixedSize(50)
-      .bindContentsToTransformer(new SiNoTransformer)
+      .bindContentsToProperty("recibeResumenCuenta").setTransformer({ (recibeResumen : Boolean) => if (recibeResumen) "SI" else "NO"})
   }
 
   def createGridActions(mainPanel: Panel) {
@@ -146,11 +140,11 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
     actionsPanel.setLayout(new HorizontalLayout)
     var edit = new Button(actionsPanel)
       .setCaption("Editar")
-      .onClick(new MessageSend(this, "modificarCelular"))
+      .onClick({ () => this.modificarCelular() })
 
     var remove = new Button(actionsPanel)
       .setCaption("Borrar")
-      .onClick(new MessageSend(getModelObject, "eliminarCelularSeleccionado"))
+      .onClick({ () => getModelObject.eliminarCelularSeleccionado() })
 
     // Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
     var elementSelected = new NotNullObservable("celularSeleccionado")
@@ -170,7 +164,7 @@ class BuscarCelularesWindow(parent: WindowOwner) extends SimpleWindow[BuscadorCe
   }
 
   def openDialog(dialog: Dialog[_]) {
-    dialog.onAccept(new MessageSend(getModelObject, "search"))
+    dialog.onAccept({ () => getModelObject.search })
     dialog.open
   }
 

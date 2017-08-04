@@ -1,15 +1,13 @@
 package ar.edu.celulares.home
 
 import scala.collection.JavaConversions.asScalaBuffer
-import org.uqbar.commons.model.CollectionBasedHome
-import org.uqbar.commons.model.UserException
-import org.uqbar.commons.utils.Observable
 import ar.edu.celulares.domain.Celular
 import ar.edu.celulares.domain.Modelo
 import org.apache.commons.collections15.Predicate
-import org.uqbar.commons.utils.ApplicationContext
+import org.uqbar.commons.model.CollectionBasedRepo
+import org.uqbar.commons.model.exceptions.UserException
 
-object HomeCelulares extends CollectionBasedHome[Celular] {
+object RepoCelulares extends CollectionBasedRepo[Celular] {
 
   this.create("Laura Iturbe", 88022202, modelo("NOKIA LUMIA 625"), false)
   this.create("Julieta Passerini", 45636453, modelo("NOKIA ASHA 501"), false)
@@ -19,7 +17,7 @@ object HomeCelulares extends CollectionBasedHome[Celular] {
 
   def modelo(modeloDescripcion: String): Modelo = {
     // TODO: ¿Implementar cake pattern?
-    HomeModelos.get(modeloDescripcion)
+    RepoModelos.get(modeloDescripcion)
   }
 
   // ********************************************************

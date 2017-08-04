@@ -1,12 +1,12 @@
 package ar.edu.celulares.domain
 
 import org.uqbar.commons.model.Entity
-import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.annotations.Observable
 
 @Observable
 class Modelo extends Entity {
 
-  	var descripcion : String = _
+ 	var descripcion : String = _
 	var costo : BigDecimal = _
 	var requiereResumenCuenta : Boolean = _
 

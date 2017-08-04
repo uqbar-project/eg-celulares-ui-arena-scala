@@ -1,15 +1,14 @@
 package ar.edu.celulares.home
 
-import org.uqbar.commons.model.CollectionBasedHome
-import org.uqbar.commons.utils.Observable
-
 import ar.edu.celulares.domain.Celular
 import ar.edu.celulares.domain.Modelo
 import scala.collection.JavaConverters._
 import scala.collection.JavaConversions._
+import org.uqbar.commons.model.CollectionBasedRepo
+import org.uqbar.commons.model.annotations.Observable
 
 @Observable
-object HomeModelos extends CollectionBasedHome[Modelo] {
+object RepoModelos extends CollectionBasedRepo[Modelo] {
 
 	this.create("NOKIA ASHA 501", 700f, true)
 	this.create("LG OPTIMUS L5 II", 920f, false)
